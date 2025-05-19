@@ -25,5 +25,5 @@ export default function Home({loaderData}: Route.ComponentProps) {
 
     // make it cast to a function that returns a React element
     const Content = loaderData as unknown as () => ReactElement;
-    return <div><Content/></div>;
+    return <div><MDXProvider><Content/></MDXProvider></div>;
 }
