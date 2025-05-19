@@ -1,5 +1,6 @@
 import type {Route} from "./+types/home";
 import {MDXProvider} from "@mdx-js/react";
+import type {ReactElement} from "react";
 
 export function meta({params}: Route.MetaArgs) {
   return [
@@ -13,21 +14,16 @@ const importer = async (path: string) => {
     return (await import((`../welcome/${path}.mdx`))).default;
 }
 
-export async function loader({params}: Route.MetaArgs) {
+export async function clientLoader({params}: Route.MetaArgs): Promise<()=> ReactElement>{
 
-    const content = await importer(params.test!);
-    return content();
-
-}
-
-export async function clientLoader({params, serverLoader}: Route.ClientLoaderArgs){
-
-    const content = await serverLoader();
+    //@ts-ignore
+    return (await import((`../welcome/${params.test}.mdx`))).default;
 
 }
 
 export default function Home({loaderData}: Route.ComponentProps) {
 
-    const content = loaderData;
-    return <div><MDXProvider>{content}</MDXProvider></div>;
+    // make it cast to a function that returns a React element
+    const Content = loaderData as unknown as () => ReactElement;
+    return <div><Content/></div>;
 }

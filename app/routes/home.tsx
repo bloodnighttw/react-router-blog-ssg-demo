@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +9,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Link to="/test">Test</Link>;
+    return <Link to={{
+        pathname: "/test",
+    }}>123</Link>;
 }

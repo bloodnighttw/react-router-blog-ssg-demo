@@ -1,11 +1,10 @@
 import React from "react";
 import {Outlet} from "react-router";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-    console.log(children);
+export default function Layout() {
   return (
       <div>
-          <h1>wtf</h1>
+          <div className="h-80 text-4xl">wtf</div>
           <Outlet />
       </div>
   );
