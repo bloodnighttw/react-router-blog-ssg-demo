@@ -6,7 +6,6 @@ export default function Layout() {
 
   return (
       <div>
-
           <div onClick={()=> setCounter(counter+1)}>wtf: {counter}</div>
           <Outlet />
       </div>

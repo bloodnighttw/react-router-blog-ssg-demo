@@ -5,11 +5,13 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import mdx from '@mdx-js/rollup'
 
 export default defineConfig({
-  plugins: [mdx(), tailwindcss(), reactRouter(), tsconfigPaths()],
+  plugins: [
+      mdx({
+          providerImportSource: '@mdx-js/react',
+      }),
+      tailwindcss(), reactRouter(), tsconfigPaths()
+  ],
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.mdx'],
     },
-    optimizeDeps:{
-      include: ['react/jsx-runtime'],
-    }
 });
